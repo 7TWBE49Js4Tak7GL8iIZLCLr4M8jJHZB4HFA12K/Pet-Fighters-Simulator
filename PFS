@@ -1,0 +1,105 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Qoucx Hub Pet Fighters Simulator", "Serpent")
+local Tab = Window:NewTab("Auto Collect Coins")
+local Section = Tab:NewSection("Auto Collect Coins")
+
+getgenv().AutoEgg = true
+getgenv().acc = true
+
+Section:NewButton(
+    "Auto Collect Coins",
+    "",
+    function()
+		getgenv().acc = true;
+		wait()
+		while acc do 
+			wait()
+				for _, v in pairs(game:GetService("Workspace").GameAssets.Coins:GetDescendants()) do
+				wait()
+				if v:IsA("MeshPart") and v.Parent then
+				wait()
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+			end
+		end
+	end
+end)
+
+Section:NewButton(
+    "Stop Collecting Coins",
+    "",
+    function()
+		getgenv().acc = false;
+end)
+
+
+
+local Tab = Window:NewTab("Auto Open Eggs")
+local Section = Tab:NewSection("Auto Open Eggs")
+-- auto open eggs
+local eggs = {}
+for _, v in pairs(game:GetService("Workspace").GameAssets.Capsules:GetChildren()) do
+    wait()
+    table.insert(eggs, v.Name)
+end
+
+Section:NewDropdown(
+    "Eggs",
+    "Dropdown To See Eggs",
+    eggs,
+    function(currentOption)
+        wait()
+        SelectedEgg = currentOption
+    end
+)
+
+Section:NewToggle(
+    "Auto Open Selected Egg",
+    "",
+    function(state)
+        getgenv().AutoEgg = true
+        wait()
+        while AutoEgg do
+			wait()
+			if state then 
+            wait()
+            keypress(0x45)
+            keyrelease(0x45)
+			else
+				getgenv().AutoEgg = false;
+			end
+        end
+    end
+)
+
+local Tab = Window:NewTab("Teleports")
+local Section = Tab:NewSection("Teleports")
+
+Section:NewButton(
+    "Spawn / Main World",
+    "",
+    function()
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            CFrame.new(-194.25598144531, 380.14785766602, -514.54974365234) -- Spawn / Main Area
+    end
+)
+
+Section:NewButton(
+    "Atlantis Palace",
+    "",
+    function()
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            CFrame.new(3196.5705566406, 396.27178955078, 19.104740142822) -- Atlantis Palace
+    end
+)
+
+Section:NewButton(
+    "Electrifying Alley",
+    "",
+    function()
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            CFrame.new(-636.34936523438, 398.32888793945, 3966.064453125) -- electrifying alley
+    end
+)
