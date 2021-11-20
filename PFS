@@ -2,28 +2,27 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("Qoucx Hub Pet Fighters Simulator", "Serpent")
 local Players = game.Players
 
--- Anti AFK
-local GC = getconnections or get_signal_cons
-if GC then
-    for i,v in pairs(GC(Players.LocalPlayer.Idled)) do
-        if v["Disable"] then
-            v["Disable"](v)
-        elseif v["Disconnect"] then
-            v["Disconnect"](v)
-        end
-    end
-    warn('Anti Idle','Anti idle is enabled')
-else
-    warn('Incompatible Exploit','Your exploit does not support this command (missing getconnections)')
-end
-
 local Tab = Window:NewTab("News / Updates")
 local Section = Tab:NewSection("Latest Updates")
 
 Section:NewButton(
-    "Built In Anti AFK",
+    "Press For Anti AFK",
     "",
     function()
+    wait()
+    local GC = getconnections or get_signal_cons
+    if GC then
+        for i,v in pairs(GC(Players.LocalPlayer.Idled)) do
+            if v["Disable"] then
+                v["Disable"](v)
+            elseif v["Disconnect"] then
+                v["Disconnect"](v)
+            end
+        end
+        warn('Anti Idle','Anti idle is enabled')
+    else
+        warn('Incompatible Exploit','Your exploit does not support this command (missing getconnections)')
+    end
 end)
 
 Section:NewButton(
