@@ -10,28 +10,28 @@ Section:NewButton(
     "Auto Collect Coins",
     "",
     function()
-		getgenv().acc = true;
-		wait()
-		while acc do 
-			wait()
-				for _, v in pairs(game:GetService("Workspace").GameAssets.Coins:GetDescendants()) do
-				wait()
-				if v:IsA("MeshPart") and v.Parent then
-				wait()
-				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-			end
-		end
-	end
-end)
+        getgenv().acc = true
+        wait()
+        while acc do
+            wait()
+            for _, v in pairs(game:GetService("Workspace").GameAssets.Coins:GetDescendants()) do
+                wait()
+                if v:IsA("MeshPart") and v.Parent then
+                    wait()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                end
+            end
+        end
+    end
+)
 
 Section:NewButton(
     "Stop Collecting Coins",
     "",
     function()
-		getgenv().acc = false;
-end)
-
-
+        getgenv().acc = false
+    end
+)
 
 local Tab = Window:NewTab("Auto Open Eggs")
 local Section = Tab:NewSection("Auto Open Eggs")
@@ -59,14 +59,14 @@ Section:NewToggle(
         getgenv().AutoEgg = true
         wait()
         while AutoEgg do
-			wait()
-			if state then 
             wait()
-            keypress(0x45)
-            keyrelease(0x45)
-			else
-				getgenv().AutoEgg = false;
-			end
+            if state then
+                wait()
+                keypress(0x45)
+                keyrelease(0x45)
+            else
+                getgenv().AutoEgg = false
+            end
         end
     end
 )
@@ -101,5 +101,108 @@ Section:NewButton(
         wait()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
             CFrame.new(-636.34936523438, 398.32888793945, 3966.064453125) -- electrifying alley
+    end
+)
+Section:NewButton(
+    "Secret Place",
+    "",
+    function()
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            CFrame.new(28.895347595215, 2.9999988079071, 112.89864349365) -- Secret Plaace
+    end
+)
+
+local Tab = Window:NewTab("Local Player")
+local Section = Tab:NewSection("Local Player")
+Section:NewSlider(
+    "Walkspeed",
+    "Walkspeed",
+    100,
+    24,
+    function(s) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+    end
+)
+
+Section:NewSlider(
+    "Jumppower",
+    "Jumppower",
+    250,
+    65,
+    function(s) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+    end
+)
+
+Section:NewSlider(
+    "FOV",
+    "Field Of View",
+    120,
+    70,
+    function(s) -- 500 (MaxValue) | 0 (MinValue)
+        game.Workspace.Camera.FieldOfView = s
+    end
+)
+
+Section:NewButton(
+    "Auto Speak",
+    "",
+    function()
+        wait(0.5)
+        getgenv().AutoChat = true
+        wait()
+        while AutoChat == true do
+            wait(2.5)
+            local args = {
+                [1] = "Qoucx Winning!",
+                [2] = "All"
+            }
+
+            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+        end
+    end
+)
+
+Section:NewButton(
+    "Stop Auto Speak",
+    "",
+    function()
+        wait()
+        getgenv().AutoChat = false
+        wait(1)
+        getgenv.AutoChat = true
+    end
+)
+
+Section:NewButton(
+    "Hide Name",
+    "",
+    function()
+        game.Players.LocalPlayer.Name = "Anonymous"
+        wait()
+        game.Players.LocalPlayer.DisplayName = "Anonymous"
+        wait()
+    end
+)
+
+local Tab = Window:NewTab("Settings")
+local Section = Tab:NewSection("Settings")
+Section:NewKeybind(
+    "ToggleUI",
+    "Toggles The UI",
+    Enum.KeyCode.G,
+    function()
+        Library:ToggleUI()
+    end
+)
+
+local Tab = Window:NewTab("Credits")
+local Section = Tab:NewSection("Credits")
+Section:NewButton(
+    "Qoucx#0001",
+    "",
+    function(txt)
+        setclipboard("Qoucx#0001")
     end
 )
