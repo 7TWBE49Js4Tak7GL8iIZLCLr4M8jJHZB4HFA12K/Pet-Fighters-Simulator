@@ -1,37 +1,122 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Qoucx Hub Pet Fighters Simulator", "Serpent")
-local Tab = Window:NewTab("Auto Collect Coins")
-local Section = Tab:NewSection("Auto Collect Coins")
+local Players = game.Players
 
+-- Anti AFK
+local GC = getconnections or get_signal_cons
+if GC then
+    for i,v in pairs(GC(Players.LocalPlayer.Idled)) do
+        if v["Disable"] then
+            v["Disable"](v)
+        elseif v["Disconnect"] then
+            v["Disconnect"](v)
+        end
+    end
+    warn('Anti Idle','Anti idle is enabled')
+else
+    warn('Incompatible Exploit','Your exploit does not support this command (missing getconnections)')
+end
+
+local Tab = Window:NewTab("News / Updates")
+local Section = Tab:NewSection("Latest Updates")
+
+Section:NewButton(
+    "Built In Anti AFK",
+    "",
+    function()
+end)
+
+Section:NewButton(
+    "INFINITE COINS",
+    "",
+    function()
+end)
+
+Section:NewButton(
+    "More To Come Like An Autofarm",
+    "",
+    function()
+end)
+
+Section:NewButton(
+    "Qoucx#0001 Made This",
+    "",
+    function()
+    setclipboard("Qoucx#0001")
+end)
+
+Section:NewButton("Join Discord", "", function()
+	wait()
+	local http = game:GetService('HttpService') 
+	if toClipboard then
+		toClipboard('https://discord.com/invite/dYHag43eeU')
+	else
+	end
+	local req = (syn and syn.request) or (http and http.request) or http_request
+	if req then
+		req({
+			Url = 'http://127.0.0.1:6463/rpc?v=1',
+			Method = 'POST',
+			Headers = {
+				['Content-Type'] = 'application/json',
+				Origin = 'https://discord.com'
+			},
+			Body = http:JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = http:GenerateGUID(false),
+				args = {code = 'T36DYDXbB2'}
+			})
+		})
+	end
+end)
+
+-- Global Environments
 getgenv().AutoEgg = true
 getgenv().acc = true
+
+-- The Main Shit
+local Tab = Window:NewTab("Infinite Coins")
+local Section = Tab:NewSection("Infinite Coins")
+local Section = Tab:NewSection("HOW TO USE")
+local Section = Tab:NewSection("Kill A Mob, Press Infinite Coins")
+local Section = Tab:NewSection("Then Collect A Coin Then It'll Work")
+Section:NewButton(
+    "Infinite Coins",
+    "",
+    function()
+    wait()
+    local a={repeatamount=math.huge,exceptions={"SayMessageRequest"}}local b=getrawmetatable(game)local c=b.__namecall;setreadonly(b,false)b.__namecall=function(d,...)local e={...}local f=getnamecallmethod()for g,h in next,a.exceptions do if d.Name==h then return c(d,...)end end;if f=="FireServer"or f=="InvokeServer"then for g=1,a.repeatamount do wait(.000000000000000000000000000001)c(d,...)end end;return c(d,...)end;setreadonly(b,true)
+end)
+
+local Tab = Window:NewTab("Auto Collect Coins")
+local Section = Tab:NewSection("Auto Collect Coins")
 
 Section:NewButton(
     "Auto Collect Coins",
     "",
     function()
-        getgenv().acc = true
-        wait()
-        while acc do
-            wait()
-            for _, v in pairs(game:GetService("Workspace").GameAssets.Coins:GetDescendants()) do
-                wait()
-                if v:IsA("MeshPart") and v.Parent then
-                    wait()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-                end
-            end
-        end
-    end
-)
+		getgenv().acc = true;
+		wait()
+		while acc do 
+			wait()
+				for _, v in pairs(game:GetService("Workspace").GameAssets.Coins:GetDescendants()) do
+				wait()
+				if v:IsA("MeshPart") and v.Parent then
+				wait()
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+			end
+		end
+	end
+end)
 
 Section:NewButton(
     "Stop Collecting Coins",
     "",
     function()
-        getgenv().acc = false
-    end
-)
+		getgenv().acc = false;
+end)
+
+
 
 local Tab = Window:NewTab("Auto Open Eggs")
 local Section = Tab:NewSection("Auto Open Eggs")
@@ -59,14 +144,14 @@ Section:NewToggle(
         getgenv().AutoEgg = true
         wait()
         while AutoEgg do
+			wait()
+			if state then 
             wait()
-            if state then
-                wait()
-                keypress(0x45)
-                keyrelease(0x45)
-            else
-                getgenv().AutoEgg = false
-            end
+            keypress(0x45)
+            keyrelease(0x45)
+			else
+				getgenv().AutoEgg = false;
+			end
         end
     end
 )
@@ -111,98 +196,62 @@ Section:NewButton(
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
             CFrame.new(28.895347595215, 2.9999988079071, 112.89864349365) -- Secret Plaace
     end
-)
+)     
+
+
 
 local Tab = Window:NewTab("Local Player")
 local Section = Tab:NewSection("Local Player")
-Section:NewSlider(
-    "Walkspeed",
-    "Walkspeed",
-    100,
-    24,
-    function(s) -- 500 (MaxValue) | 0 (MinValue)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
-    end
-)
+Section:NewSlider("Walkspeed", "Walkspeed", 100, 24, function(s) -- 500 (MaxValue) | 0 (MinValue)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
 
-Section:NewSlider(
-    "Jumppower",
-    "Jumppower",
-    250,
-    65,
-    function(s) -- 500 (MaxValue) | 0 (MinValue)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
-    end
-)
+Section:NewSlider("Jumppower", "Jumppower", 250, 65, function(s) -- 500 (MaxValue) | 0 (MinValue)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower= s
+end)
 
-Section:NewSlider(
-    "FOV",
-    "Field Of View",
-    120,
-    70,
-    function(s) -- 500 (MaxValue) | 0 (MinValue)
-        game.Workspace.Camera.FieldOfView = s
-    end
-)
+Section:NewSlider("FOV", "Field Of View", 120, 70, function(s) -- 500 (MaxValue) | 0 (MinValue)
+	game.Workspace.Camera.FieldOfView = s
+end)
 
-Section:NewButton(
-    "Auto Speak",
-    "",
-    function()
-        wait(0.5)
-        getgenv().AutoChat = true
-        wait()
-        while AutoChat == true do
-            wait(2.5)
-            local args = {
-                [1] = "Qoucx Winning!",
-                [2] = "All"
-            }
+Section:NewButton("Auto Speak", "", function()
+	wait(0.5)
+	getgenv().AutoChat = true;  
+	wait()      
+	while AutoChat == true do
+		wait(2.5)
+		local args = {
+			[1] = "Qoucx Winning!",
+			[2] = "All"
+		}
 
-            game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-        end
-    end
-)
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+	end
+end)
 
-Section:NewButton(
-    "Stop Auto Speak",
-    "",
-    function()
-        wait()
-        getgenv().AutoChat = false
-        wait(1)
-        getgenv.AutoChat = true
-    end
-)
+Section:NewButton("Stop Auto Speak", "", function()
+	wait()
+	getgenv().AutoChat = false;
+	wait(1)
+	getgenv.AutoChat = true;
+end)
 
-Section:NewButton(
-    "Hide Name",
-    "",
-    function()
-        game.Players.LocalPlayer.Name = "Anonymous"
-        wait()
-        game.Players.LocalPlayer.DisplayName = "Anonymous"
-        wait()
-    end
-)
+Section:NewButton("Hide Name", "", function()
+	game.Players.LocalPlayer.Name = "Anonymous"
+	wait()
+	game.Players.LocalPlayer.DisplayName = "Anonymous"
+	wait()
+end)  
+
 
 local Tab = Window:NewTab("Settings")
 local Section = Tab:NewSection("Settings")
-Section:NewKeybind(
-    "ToggleUI",
-    "Toggles The UI",
-    Enum.KeyCode.G,
-    function()
-        Library:ToggleUI()
-    end
-)
+Section:NewKeybind("ToggleUI", "Toggles The UI", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
 
 local Tab = Window:NewTab("Credits")
 local Section = Tab:NewSection("Credits")
-Section:NewButton(
-    "Qoucx#0001",
-    "",
-    function(txt)
-        setclipboard("Qoucx#0001")
-    end
-)
+Section:NewButton("Qoucx#0001", "", function(txt)
+	setclipboard("Qoucx#0001")
+end)
